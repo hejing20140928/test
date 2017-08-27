@@ -1,0 +1,33 @@
+exp导出
+full:普通用户没有权限进行此操作
+本地导：exp \'/ as sysdba\' file=hej11g.dmp full=y
+远程导：exp \'sys/123@192.168.43.10:1521/hej11g as sysdba\' file=hej11g.dmp full=y
+
+user:
+	exp scott/tiger file=scott.dmp
+	exp system/123 owner=scott file=scott.dmp
+
+table:
+	exp scott/tiger tables=emp,dept file=tables.dmp
+	exp system/123 tables=scott.emp,scott.dept file=tables.dmp
+
+rows:
+	exp scott/tiger table=emp query=\'where deptno>10\' file=rows.dmp
+
+
+imp导入：不导索引可以加上Index=no
+full:
+	imp \'/ as sysdba\' file=hej11g.dmp full=y ignore=y
+
+user:
+	imp scott/tiger file=scott.dmp ignore=y
+
+把一个用户数据给另一个用户：
+	imp system/123 file=scott.dmp fromuser=scott touser=s1 ignore=y
+
+table:
+	imp scott/tiger table=emp,dept file=tables.dmp ignore=y
+
+
+	
+	
